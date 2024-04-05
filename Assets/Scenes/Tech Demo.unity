@@ -10302,6 +10302,10 @@ PrefabInstance:
       value: Door Trigger (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8095116430955796928, guid: aa5139d32ea5bc64e90343de32f3b3f6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095116430955796928, guid: aa5139d32ea5bc64e90343de32f3b3f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.560734
       objectReference: {fileID: 0}
@@ -10311,7 +10315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8095116430955796928, guid: aa5139d32ea5bc64e90343de32f3b3f6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -92.039085
+      value: -91.99
       objectReference: {fileID: 0}
     - target: {fileID: 8095116430955796928, guid: aa5139d32ea5bc64e90343de32f3b3f6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12155,6 +12159,10 @@ PrefabInstance:
       value: Door Trigger
       objectReference: {fileID: 0}
     - target: {fileID: 8095116430955796928, guid: aa5139d32ea5bc64e90343de32f3b3f6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095116430955796928, guid: aa5139d32ea5bc64e90343de32f3b3f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.030734
       objectReference: {fileID: 0}
@@ -12164,7 +12172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8095116430955796928, guid: aa5139d32ea5bc64e90343de32f3b3f6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.3390822
+      value: -1.28
       objectReference: {fileID: 0}
     - target: {fileID: 8095116430955796928, guid: aa5139d32ea5bc64e90343de32f3b3f6, type: 3}
       propertyPath: m_LocalRotation.w
