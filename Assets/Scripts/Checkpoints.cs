@@ -14,7 +14,6 @@ public class Checkpoints : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip checkpointActivateSound;
 
-    [SerializeField] private GameObject[] checkpoints;
     [SerializeField] private GameObject currentCheckpoint;
 
     private Vector3 initialPosition;
@@ -23,7 +22,6 @@ public class Checkpoints : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        checkpoints = GameObject.FindGameObjectsWithTag("Checkpoint");
         initialPosition = transform.position;
     }
 
@@ -48,25 +46,20 @@ public class Checkpoints : MonoBehaviour
 
         if (other.gameObject.CompareTag("Checkpoint"))
         {
-            foreach (var checkpoint in checkpoints)
+            if (currentCheckpoint == null)
             {
-                if (currentCheckpoint == null)
-                {
-                    currentCheckpoint = other.gameObject;
-                    currentCheckpoint.transform.position = other.transform.position;
-                    other.GetComponent<Renderer>().material = activated;
-                    audioSource.PlayOneShot(checkpointActivateSound);
-                    Debug.Log("no current checkpoint");
-                }
-                else if (other.gameObject != currentCheckpoint)
-                {
-                    currentCheckpoint.GetComponent<Renderer>().material = deactivated;
-                    currentCheckpoint = other.gameObject;
-                    currentCheckpoint.transform.position = other.transform.position;
-                    other.GetComponent<Renderer>().material = activated;
-                    audioSource.PlayOneShot(checkpointActivateSound);
-                    Debug.Log("different checkpoint");
-                }
+                currentCheckpoint = other.gameObject;
+                currentCheckpoint.transform.position = other.transform.position;
+                other.GetComponent<Renderer>().material = activated;
+                audioSource.PlayOneShot(checkpointActivateSound);
+            }
+            else if (other.gameObject != currentCheckpoint)
+            {
+                currentCheckpoint.GetComponent<Renderer>().material = deactivated;
+                currentCheckpoint = other.gameObject;
+                currentCheckpoint.transform.position = other.transform.position;
+                other.GetComponent<Renderer>().material = activated;
+                audioSource.PlayOneShot(checkpointActivateSound);
             }
         }
     }

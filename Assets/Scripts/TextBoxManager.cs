@@ -20,8 +20,8 @@ public class TextBoxManager : MonoBehaviour
     public CharacterController player;
     //public PickupController pickupController;
 
-    //public AudioSource audioSource;
-    //public AudioClip[] captainTalkSounds;
+    public AudioSource audioSource;
+    public AudioClip[] NPCTalkSounds;
     //public AudioClip[] oldManTalkSounds;
 
     //public Rigidbody rb;
@@ -108,6 +108,7 @@ public class TextBoxManager : MonoBehaviour
         {
             theText.text += lineOfText[letter];
             letter++;
+            audioSource.PlayOneShot(NPCTalkSounds[Random.Range(0, NPCTalkSounds.Length)]);
             yield return new WaitForSeconds(typeSpeed);
         }
         theText.text = lineOfText;
