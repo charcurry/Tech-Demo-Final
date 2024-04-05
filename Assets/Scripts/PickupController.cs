@@ -13,10 +13,14 @@ public class PickupController : MonoBehaviour
     public TextMeshProUGUI countText;
 
     private int count;
+    public AudioSource audioSource;
+
+    public AudioClip pickupSound;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         numberOfPickups = CountPickups();
         Time.timeScale = 1f;
         SetCountText();
@@ -34,6 +38,7 @@ public class PickupController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Pickup"))
         {
+            audioSource.PlayOneShot(pickupSound);
             other.gameObject.SetActive(false);
             count ++;
             SetCountText();

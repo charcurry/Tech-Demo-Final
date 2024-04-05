@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 
@@ -11,6 +10,9 @@ public class DoorOpen : MonoBehaviour
     private bool isOpen = false;
     private Coroutine doorCoroutine;
     public GameObject door;
+    public AudioSource audioSource;
+    public AudioClip doorOpen;
+    public AudioClip doorClose;
 
     private void Start()
     {
@@ -20,12 +22,12 @@ public class DoorOpen : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-            OpenDoor();
+        OpenDoor();
     }
 
     private void OnTriggerExit(Collider other)
     {
-            CloseDoor();
+        CloseDoor();
     }
 
     private void OpenDoor()
@@ -39,6 +41,10 @@ public class DoorOpen : MonoBehaviour
 
             doorCoroutine = StartCoroutine(MoveDoor(targetPosition));
             isOpen = true;
+
+            audioSource.clip = doorOpen;
+            audioSource.pitch = 1f;
+            audioSource.Play();
         }
     }
 
@@ -53,6 +59,10 @@ public class DoorOpen : MonoBehaviour
 
             doorCoroutine = StartCoroutine(MoveDoor(initialPosition));
             isOpen = false;
+
+            audioSource.clip = doorClose;
+            audioSource.pitch = 1f;
+            audioSource.Play();
         }
     }
 
@@ -65,10 +75,14 @@ public class DoorOpen : MonoBehaviour
         {
             door.transform.position = Vector3.Lerp(startingPosition, target, elapsedTime);
             elapsedTime += Time.deltaTime * slideSpeed;
+
+            float speedFactor = Mathf.Clamp01(elapsedTime);
+            float targetPitch = Mathf.Lerp(0.5f, 2f, speedFactor);
+            audioSource.pitch = targetPitch;
+
             yield return null;
         }
 
         door.transform.position = target;
     }
-
 }

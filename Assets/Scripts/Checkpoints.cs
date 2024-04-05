@@ -11,6 +11,9 @@ public class Checkpoints : MonoBehaviour
     public Material activated;
     public Material deactivated;
 
+    private AudioSource audioSource;
+    public AudioClip checkpointActivateSound;
+
     [SerializeField] private GameObject[] checkpoints;
     [SerializeField] private GameObject currentCheckpoint;
 
@@ -19,6 +22,7 @@ public class Checkpoints : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         checkpoints = GameObject.FindGameObjectsWithTag("Checkpoint");
         initialPosition = transform.position;
     }
@@ -51,13 +55,17 @@ public class Checkpoints : MonoBehaviour
                     currentCheckpoint = other.gameObject;
                     currentCheckpoint.transform.position = other.transform.position;
                     other.GetComponent<Renderer>().material = activated;
+                    audioSource.PlayOneShot(checkpointActivateSound);
+                    Debug.Log("no current checkpoint");
                 }
-                else if (checkpoint != currentCheckpoint)
+                else if (other.gameObject != currentCheckpoint)
                 {
                     currentCheckpoint.GetComponent<Renderer>().material = deactivated;
                     currentCheckpoint = other.gameObject;
                     currentCheckpoint.transform.position = other.transform.position;
                     other.GetComponent<Renderer>().material = activated;
+                    audioSource.PlayOneShot(checkpointActivateSound);
+                    Debug.Log("different checkpoint");
                 }
             }
         }
